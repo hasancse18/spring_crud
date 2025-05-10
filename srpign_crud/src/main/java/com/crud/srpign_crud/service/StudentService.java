@@ -9,4 +9,5 @@ public interface StudentService {
     ArrayList<StudentDto>getStudent();
     StudentDto getStudentById(String id);
     StudentDto updateStudent(String id, StudentDto studentDto);
+    StudentDto deleteStudentById(String id);
 }

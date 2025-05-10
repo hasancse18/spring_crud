@@ -32,13 +32,22 @@ public class StudentServiceImpl implements StudentService{
         return student.stream()
                 .filter(s->s.getId().equals(id))
                 .findFirst()
-                .map(student->{
-                    student.setFristName(studentDto.getFristName());
-                    student.setLastName(studentDto.getLastName());
-                    student.setEmail(studentDto.getEmail());
-                    return student;
+                .map(d->{
+                    d.setFristName(studentDto.getFristName());
+                    d.setLastName(studentDto.getLastName());
+                    d.setEmail(studentDto.getEmail());
+                    return d;
                 }).orElseThrow(() -> new RuntimeException("Resource not found"));
 
+    }
+
+    @Override
+    public StudentDto deleteStudentById(String id) {
+        StudentDto deleteStudent = student.stream()
+                .filter(s->s.getId().equals(id))
+                .findFirst()
+                .orElseThrow(()-> new RuntimeException("Id Not Found"));
+        return deleteStudent;
     }
 
 }
