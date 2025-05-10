@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/srpign_crud.iml" filepath="$PROJECT_DIR$/.idea/srpign_crud.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/srpign_crud.srpign_crud.main.iml" filepath="$PROJECT_DIR$/.idea/modules/srpign_crud.srpign_crud.main.iml" />
     </modules>
   </component>
 </project>
