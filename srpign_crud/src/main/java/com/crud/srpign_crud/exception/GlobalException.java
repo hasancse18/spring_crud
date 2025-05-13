@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 
@@ -26,7 +27,7 @@ public class GlobalException {
     }
 
     @ExceptionHandler(ConfigDataResourceNotFoundException.class)
-    public ResponseEntity<?> resourceNotFoundException(ConfigDataResourceNotFoundException ex) {
+    public ResponseEntity<?> configResourceNotFoundException(ConfigDataResourceNotFoundException ex) {
         HashMap<String, Object> errorDetails = new HashMap<>();
         errorDetails.put("timestamp", LocalDateTime.now());
         errorDetails.put("status", HttpStatus.NOT_FOUND.value());
@@ -34,4 +35,19 @@ public class GlobalException {
         errorDetails.put("message", ex.getMessage());
         return new ResponseEntity<>(errorDetails, HttpStatus.NOT_FOUND);
     }
+
+
+
+    @ExceptionHandler(ResourceNotFound.class)
+    public ResponseEntity<?> resourceNotFoundException(ResourceNotFound ex){
+       var response = new Response(
+               LocalDateTime.now(),
+               HttpStatus.NOT_FOUND.value(),
+               ex.getMessage()
+        );
+       return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
+
+    }
+
+
 }

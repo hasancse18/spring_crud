@@ -1,6 +1,7 @@
 package com.crud.srpign_crud.service;
 
 import com.crud.srpign_crud.dto.StudentDto;
+import com.crud.srpign_crud.exception.ResourceNotFound;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -37,7 +38,7 @@ public class StudentServiceImpl implements StudentService{
                     d.setLastName(studentDto.getLastName());
                     d.setEmail(studentDto.getEmail());
                     return d;
-                }).orElseThrow(() -> new RuntimeException("Resource not found"));
+                }).orElseThrow(() -> new ResourceNotFound("Resource not found"));
 
     }
 
@@ -46,7 +47,7 @@ public class StudentServiceImpl implements StudentService{
         StudentDto deleteStudent = student.stream()
                 .filter(s->s.getId().equals(id))
                 .findFirst()
-                .orElseThrow(()-> new RuntimeException("Id Not Found"));
+                .orElseThrow(()-> new ResourceNotFound("Resource not found"));
         return deleteStudent;
     }
 
