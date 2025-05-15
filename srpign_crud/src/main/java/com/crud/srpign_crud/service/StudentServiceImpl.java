@@ -48,6 +48,7 @@ public class StudentServiceImpl implements StudentService{
                 .filter(s->s.getId().equals(id))
                 .findFirst()
                 .orElseThrow(()-> new ResourceNotFound("Resource not found"));
+        student.remove(deleteStudent);
         return deleteStudent;
     }
 
